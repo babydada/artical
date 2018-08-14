@@ -25,7 +25,8 @@ class App extends Component {
           content: 'third artical'
         }
       ],
-      searchKey: ''
+      searchKey: '',
+      search:[]
     }
   }
   handleSubmit = (data) => {
@@ -36,20 +37,20 @@ class App extends Component {
     })
   }
   handleSearch(key) {
-    var oldArtical = this.state.artical;
     if (key) {
       var titleArr = [];
       this.state.artical.forEach((item) => {
-        if (item.title.search(key)) {
-          titleArr.push(item)
+        if (item.title.search(key) !== -1) {
+          titleArr.push(item);
         }
       })
+      console.log(titleArr);
       this.setState({
-        artical: titleArr
+        search: titleArr
       })
-    } else {
+    }else{
       this.setState({
-        artical: oldArtical
+        search: []
       })
     }
   }
@@ -60,7 +61,7 @@ class App extends Component {
         <PostArtical filterCallback={this.handleSubmit.bind(this)} />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '75%', margin: '100px auto' }}>
           <Meau />
-          <Artical artical={this.state.artical} />
+          <Artical artical={this.state.search.length>0?this.state.search:this.state.artical} />
         </div>
       </div>
     )
