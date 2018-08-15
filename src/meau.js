@@ -6,7 +6,6 @@ class Meau extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meauArr: ['菜单一', '菜单二', '菜单三', '菜单四', '菜单五', '菜单六',],
       recommend: [
         {
           title: '这是第1篇推荐阅读',
@@ -40,11 +39,8 @@ class Meau extends Component {
           title: '最后一篇啦',
           content: '这是推荐阅读的简介'
         }
-
       ],
-      meauCurrent: 1,//当前菜单
-      x: 0,
-      title: ''
+      visible: true,
     }
   }
 
@@ -58,29 +54,41 @@ class Meau extends Component {
       })
     }
   }
-
+  toggle() {
+    this.setState({ visible: !this.state.visible });
+  };
   render() {
+    var childNodes;
+
+    if (this.props.node.childNodes != null) {
+      childNodes = this.props.node.childNodes.map(function (node, index) {
+        return <li key={index}><Meau node={node} /></li>
+      })
+
+      let className1 = 'togglable';
+      let className2 = this.state.visible ? 'togglable-down' : 'togglable-up';
+      var classNameFinal = className1 + ' ' + className2;
+    }
+
+    var style;
+
+    if (!this.state.visible) {
+      style = { display: "none" };
+    }
+
     return (
-      <div style={{ marginRight: '100px' }}>
+      <div style={{ marginRight: '10px'}}>
         <div>
-          {this.state.meauArr.map((item, i) => (
-            <span onClick={(item) => { this.setState({ meauCurrent: this.state.meauCurrent + 1 });}} style={{ display: 'block' }} key={i} className="meau">
-              {item}
-            </span>
-          ))}
-        </div>
-        <div style={{ marginTop: '100px' }}>
-          <span>推荐阅读</span>
-          <div>
-            <h4>{this.state.recommend[0].title}</h4>
-            <p>{this.state.recommend[0].content}</p>
-          </div>
-          <span onClick={() => this.change()}>换一篇</span>
+          <h5 onClick={() => { this.toggle() }} className={classNameFinal}>
+            {this.props.node.title}
+          </h5>
+          <ul style={style}>
+            {childNodes}
+          </ul>
         </div>
       </div>
     )
   }
-
 }
 
 export default Meau;

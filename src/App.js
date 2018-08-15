@@ -4,6 +4,36 @@ import Meau from './meau';
 import PostArtical from './postArtical';
 import Header from './header';
 
+var tree = {
+  title: "American Government System",
+  childNodes: [
+      {title: "Legislative", childNodes: [
+          {title: "Congress", childNodes: [
+              {title: "Agencies"}
+          ]}
+      ]},
+      {title: "Executive", childNodes: [
+          {title: "President", childNodes: [
+              {title: "Cabinet"},
+              {title: "Exec Office Of The President"},
+              {title: "Vice-president"},
+              {title: "Independent Agencies", childNodes: [
+                  {title: "Agriculture"},
+                  {title: "Commerce"},
+                  {title: "Defense"},
+                  {title: "Education"},
+                  {title: "......"}
+              ]}
+          ]}
+      ]},
+      {title: "Judicial", childNodes: [
+          {title: "Supreme Court", childNodes: [
+              {title: "Lower Courts"}
+          ]}
+      ]}
+  ]
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +74,6 @@ class App extends Component {
           titleArr.push(item);
         }
       })
-      console.log(titleArr);
       this.setState({
         search: titleArr
       })
@@ -60,7 +89,7 @@ class App extends Component {
         <Header filterCallback={this.handleSearch.bind(this)} />
         <PostArtical filterCallback={this.handleSubmit.bind(this)} />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '75%', margin: '100px auto' }}>
-          <Meau />
+          <Meau node={tree}/>
           <Artical artical={this.state.search.length>0?this.state.search:this.state.artical} />
         </div>
       </div>
