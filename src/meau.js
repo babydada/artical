@@ -77,7 +77,7 @@ class Meau extends Component {
     }
 
     return (
-      <div style={{ marginRight: '10px'}}>
+      <div style={{width:'40%'}}>
         <div>
           <h5 onClick={() => { this.toggle() }} className={classNameFinal}>
             {this.props.node.title}

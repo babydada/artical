@@ -9,7 +9,7 @@ class Artical extends Component {
   }
   render() {
     return (
-      <div style={{ width: '75%' }}>
+      <div style={{ width: '60%' }}>
         {this.props.artical.map((item, i) => (
           <ArticalItem title={item.title} desc={item.desc} content={item.content} key={i} />
         ))}
