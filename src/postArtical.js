@@ -54,7 +54,7 @@ class PostArtical extends Component {
     render() {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', margin: '90px auto 0', border: '1px dotted #e71e1c', width: '75%' }}>
-                <form style={{ display: 'flex', flexDirection: 'row',alignItems:'center' }}>
+                <form style={{ display: 'flex', flexDirection: 'column',alignItems:'center' }}>
                     <label>
                         title
                         </label>
