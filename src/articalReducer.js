@@ -15,6 +15,11 @@ const articalReducer = (state,action)=>{
               title: '天天向上',
               desc: 'day day up',
               content: 'third artical'
+            },
+            {
+              title: '今天天气好晴朗',
+              desc: '处处好风光',
+              content: '好风光'
             }
         ]
     }
